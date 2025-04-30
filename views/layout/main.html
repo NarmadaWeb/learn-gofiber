@@ -1,0 +1,20 @@
+<!-- views/layouts/main.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{template "title" .}} - Website Saya</title> <!-- Panggil blok title -->
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        body { font-family: sans-serif; }
+        header, footer { background-color: #f0f0f0; padding: 10px; margin-bottom: 15px; }
+        main { border: 1px solid #ccc; padding: 15px; min-height: 100px;}
+    </style>
+</head>
+<body>
+    <header>Ini Header Umum (Layout)</header>
+    <main>
+        {{template "content" .}} <!-- Panggil blok content -->
+    </main>
+    <footer>Ini Footer Umum (Layout) - Email: {{ .Email }}</footer>
+</body>
+</html>

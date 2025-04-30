@@ -1,0 +1,22 @@
+<!-- views/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{.Title}}</title> <!-- Menampilkan data 'Title' -->
+</head>
+<body>
+    <h1>{{.Header}}</h1>
+    <p>Selamat datang di halaman contoh!</p>
+
+    <h2>Daftar Item:</h2>
+    {{if .Items}} <!-- Cek jika Items ada dan tidak kosong -->
+        <ul>
+            {{range .Items}} <!-- Looping melalui slice Items -->
+                <li>{{.}}</li> <!-- Tampilkan setiap item -->
+            {{end}}
+        </ul>
+    {{else}}
+        <p>Tidak ada item untuk ditampilkan.</p>
+    {{end}}
+</body>
+</html>

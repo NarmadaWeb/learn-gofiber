@@ -1,0 +1,54 @@
+[Unit]
+Description=Aplikasi Fiber Saya
+# Start after network is ready and optionally after database service
+After=network.target # postgresql.service mysql.service
+
+[Service]
+# === User/Group ===
+# Run as a dedicated non-root user for security
+User=namauseraplikasi
+Group=namauseraplikasi
+
+# === Working Directory ===
+# Directory where the application binary and potentially config files reside
+WorkingDirectory=/path/ke/direktori/aplikasi
+
+# === Environment Variables ===
+# Load environment variables from a file (recommended for secrets like DB URL, JWT secret)
+# Ensure this file is secured (e.g., chmod 600) and owned by the user/group above
+EnvironmentFile=/path/ke/direktori/aplikasi/.env
+# You can also set environment variables directly:
+# Environment="LISTEN_ADDR=:3000"
+# Environment="APP_ENV=production"
+
+# === Execution ===
+# Full path to your compiled Go binary
+ExecStart=/path/ke/binary/myapp
+
+# === Restart Policy ===
+# Automatically restart the service if it fails
+Restart=on-failure
+# Wait 5 seconds before attempting restart
+RestartSec=5s
+
+# === Logging ===
+# Redirect stdout and stderr to systemd journal
+StandardOutput=journal
+StandardError=journal
+
+# === Resource Limits ===
+# Increase the file descriptor limit (important for web servers handling many connections)
+LimitNOFILE=65536
+# Other limits can be set here (e.g., LimitNPROC, LimitMEMLOCK)
+
+# === Security ===
+# Optional security hardening settings:
+# ProtectSystem=full          # Make /usr, /boot, /etc read-only
+# ProtectHome=true            # Make /home directories inaccessible
+# PrivateTmp=true             # Use a private /tmp directory
+# NoNewPrivileges=true        # Prevent service processes from gaining new privileges
+# CapabilityBoundingSet=~CAP_SYS_PTRACE # Drop unnecessary capabilities
+
+[Install]
+# Enable the service to start on boot in the multi-user target state
+WantedBy=multi-user.target

@@ -1,0 +1,17 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #eef;
+    color: #333;
+    margin: 20px;
+}
+
+h1 {
+    color: darkblue;
+}
+
+img {
+    max-width: 100px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin-top: 10px;
+}
